@@ -1,9 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function Hero() {
+interface HeroProps {
+    data: {
+        title?: string;
+        subtitle?: string;
+        image?: any;
+    } | null;
+}
+
+export default function Hero({ data }: HeroProps) {
+    // Fallback content if no data in CMS
+    const title = data?.title || "Email & SMS marketing so good, it's boring.";
+    const subtitle = data?.subtitle || "Drive sales on autopilot with the ecommerce marketing platform designed for nimble teams.";
+    const imageUrl = data?.image ? urlFor(data.image).url() : "/shopify-dashboard.png";
+
     return (
         <section className="bg-bg-dark text-white pt-20 pb-32 overflow-hidden relative">
             <div className="container-custom grid lg:grid-cols-2 gap-12 items-center">
@@ -14,14 +27,13 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h1 className="text-5xl lg:text-7xl font-heading font-extrabold leading-[1.1] tracking-tight mb-8">
-                        Email & SMS<br />
-                        marketing so good,<br />
-                        <span className="text-primary-green">it's boring.</span>
+                    {/* We render title as HTML to allow line breaks if passed from plain text, or just simple text */}
+                    <h1 className="text-5xl lg:text-7xl font-heading font-extrabold leading-[1.1] tracking-tight mb-8 text-balance">
+                        {title}
                     </h1>
 
                     <p className="text-xl text-gray-300 mb-10 max-w-lg leading-relaxed">
-                        Drive sales on autopilot with the ecommerce marketing platform designed for nimble teams.
+                        {subtitle}
                     </p>
 
                     <div className="flex flex-wrap gap-4 items-center">
@@ -55,25 +67,14 @@ export default function Hero() {
                     <div className="absolute inset-0 bg-primary-green/20 blur-[100px] rounded-full scale-110 -z-10" />
 
                     <div className="w-[400px] h-[400px] lg:w-[500px] lg:h-[500px] rounded-full overflow-hidden bg-teal-800 border-[8px] border-white/5 relative z-10 shadow-2xl">
-                        {/* Using Next.Image with a placeholder or local asset */}
                         <img
-                            src="/shopify-dashboard.png"
-                            alt="Dashboard Preview"
+                            src={imageUrl}
+                            alt="Hero Visual"
                             className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
                         />
                     </div>
                 </motion.div>
             </div>
-
-            {/* Floating Badge (Feature Drop) */}
-            <motion.div
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden lg:block"
-            >
-                {/* This will be handled by the FeatureDrop component below, just a placeholder anchor */}
-            </motion.div>
         </section>
     );
 }
