@@ -15,10 +15,10 @@
     "framer-motion": "^12.30.0",
     "lucide-react": "^0.563.0",
     "next": "16.1.6",
-    "next-sanity": "^9.8.31",
+    "next-sanity": "^12.0.16",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "sanity": "^3.68.1",
+    "sanity": "^5.7.0",
     "styled-components": "^6.3.8",
     "tailwind-merge": "^3.4.0"
   },
