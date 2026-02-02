@@ -14,7 +14,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight mb-8">
+                    <h1 className="text-5xl lg:text-7xl font-heading font-extrabold leading-[1.1] tracking-tight mb-8">
                         Email & SMS<br />
                         marketing so good,<br />
                         <span className="text-primary-green">it's boring.</span>

@@ -3,7 +3,7 @@ import { CheckCircle } from "lucide-react";
 export function Integrations() {
     return (
         <section className="py-20 text-center container-custom">
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold mb-4">
+            <h2 className="text-3xl lg:text-4xl font-heading font-bold mb-4">
                 Connect Omnisend to your<br />ecommerce platform
             </h2>
             <p className="text-gray-500 mb-12">One-click integration with all major platforms.</p>
@@ -25,7 +25,7 @@ export function TealCTA() {
             <div className="container-custom grid lg:grid-cols-2 gap-16 items-center">
                 <div>
                     <span className="text-primary-green font-bold tracking-wider text-sm uppercase mb-4 block">Easy Setup</span>
-                    <h2 className="text-4xl lg:text-5xl font-serif leading-tight mb-8">
+                    <h2 className="text-4xl lg:text-5xl font-heading font-bold leading-tight mb-8">
                         Get up and<br />running in<br />30 minutes
                     </h2>
                     <button className="text-white border-b border-primary-green pb-1 font-bold hover:text-primary-green transition">

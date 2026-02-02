@@ -8,7 +8,7 @@ export function FeatureDrop() {
                     <span className="bg-white text-bg-dark font-extrabold text-xs px-3 py-1 rounded uppercase tracking-wider mb-3 inline-block shadow-sm">
                         New Feature Drop
                     </span>
-                    <h3 className="text-2xl lg:text-3xl font-serif font-semibold text-bg-dark leading-tight">
+                    <h3 className="text-2xl lg:text-3xl font-heading font-bold text-bg-dark leading-tight">
                         Another feature drop?<br />
                         <span className="italic">Groundbreaking...</span>
                     </h3>
@@ -35,7 +35,7 @@ export function LogoGrid() {
             </p>
             <div className="flex flex-wrap justify-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
                 {["Shopify", "WooCommerce", "BigCommerce", "Wix", "Magento"].map((brand) => (
-                    <span key={brand} className="text-xl font-black text-bg-dark">{brand}</span>
+                    <span key={brand} className="text-xl font-heading font-black text-bg-dark">{brand}</span>
                 ))}
             </div>
         </div>

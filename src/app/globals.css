@@ -3,7 +3,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   /* Brand Colors */
   --color-primary-green: #a3e635;
   --color-bg-dark: #0b1a1a;
@@ -14,7 +14,17 @@
 
   /* Fonts */
   --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
+  --font-heading: 'Faktum', sans-serif;
+}
+
+/* Font Face Declaration */
+@font-face {
+  font-family: 'Faktum';
+  src: url('/fonts/Faktum-Bold.otf') format('opentype');
+  font-weight: 100 900;
+  /* Force this Bold file for all weights to ensure it's always used for headings */
+  font-style: normal;
+  font-display: swap;
 }
 
 :root {
@@ -27,6 +37,18 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Overrides */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  /* Default to bold for headings */
 }
 
 /* Utilities */

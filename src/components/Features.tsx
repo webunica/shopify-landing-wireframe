@@ -20,7 +20,7 @@ function FeatureItem({ title, description, badge, icon, reversed, ctaText = "Lea
                         {icon} <span>{badge}</span>
                     </div>
                 )}
-                <h2 className="text-4xl lg:text-5xl font-serif font-semibold text-bg-dark leading-tight">
+                <h2 className="text-4xl lg:text-5xl font-heading font-bold text-bg-dark leading-tight">
                     {title}
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed max-w-md">
@@ -74,7 +74,7 @@ export function Features() {
                 <div className="inline-block p-4 bg-white rounded-full shadow-md mb-6 animate-bounce">
                     <MessageSquare className="w-8 h-8 text-teal-700" />
                 </div>
-                <h2 className="text-3xl lg:text-4xl font-serif font-bold text-bg-dark mb-6">
+                <h2 className="text-3xl lg:text-4xl font-heading font-bold text-bg-dark mb-6">
                     Get <span className="text-teal-700 italic">award-winning</span><br />customer support
                 </h2>
                 <p className="max-w-xl mx-auto text-gray-600 mb-10">
