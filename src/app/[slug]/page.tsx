@@ -13,11 +13,11 @@ import exampleData from "../../../example_ferreteria.json";
 // Force dynamic rendering to ensure new CMS content is fetched
 export const dynamic = 'force-dynamic';
 
-interface Props {
-    params: {
+type Props = {
+    params: Promise<{
         slug: string;
-    };
-}
+    }>;
+};
 
 async function getLandingData(slug: string) {
     try {
@@ -41,7 +41,8 @@ async function getLandingData(slug: string) {
     return null;
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata(props: Props) {
+    const params = await props.params;
     const data = await getLandingData(params.slug);
     if (!data) return {};
 
@@ -51,7 +52,8 @@ export async function generateMetadata({ params }: Props) {
     };
 }
 
-export default async function LandingPage({ params }: Props) {
+export default async function LandingPage(props: Props) {
+    const params = await props.params;
     const data = await getLandingData(params.slug);
 
     if (!data) {
