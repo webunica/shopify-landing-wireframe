@@ -10,6 +10,7 @@ import { notFound } from "next/navigation";
 
 import exampleData from "../../../example_ferreteria.json";
 import exampleModa from "../../../example_moda.json";
+import exampleFarmacia from "../../../example_farmacia.json";
 
 // Force dynamic rendering to ensure new CMS content is fetched
 export const dynamic = 'force-dynamic';
@@ -40,6 +41,9 @@ async function getLandingData(slug: string) {
     }
     if (slug === exampleModa.slug) {
         return exampleModa;
+    }
+    if (slug === exampleFarmacia.slug) {
+        return exampleFarmacia;
     }
 
     return null;

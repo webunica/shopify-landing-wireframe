@@ -1,0 +1,52 @@
+{
+    "slug": "shopify-farmacia-online-chile",
+    "meta": {
+        "title": "Diseño Web Farmacias Chile | Shopify Receta Médica & Sincronización",
+        "description": "Digitaliza tu farmacia con Shopify. Integración de recetas retenidas, venta de medicamentos controlados y sincronización con tu ERP farmacéutico."
+    },
+    "content": {
+        "hero": {
+            "h1": "Tu Farmacia Online, Segura y Normada por el ISP",
+            "p": "Cumple con toda la normativa chilena para venta de medicamentos online. Validación de recetas, control de stock crítico y entregas rápidas."
+        },
+        "solucion_nicho": {
+            "titulo": "E-commerce Especializado en Salud y Bienestar",
+            "puntos_clave": [
+                {
+                    "label": "Subida de Receta Médica",
+                    "desc": "Módulo personalizado en el carrito para que los pacientes adjunten su receta antes de pagar, cumpliendo la ley de fármacos."
+                },
+                {
+                    "label": "Búsqueda por Principio Activo",
+                    "desc": "Ayuda a tus pacientes a encontrar bioequivalentes fácilmente. Buscador avanzado por marca, droga o laboratorio."
+                },
+                {
+                    "label": "Ficha Técnica ISP",
+                    "desc": "Integración automática de información obligatoria: contraindicaciones, dosis y advertencias en cada ficha de producto."
+                }
+            ]
+        },
+        "integraciones": {
+            "pagos": "Webpay Plus y convenios con Cajas de Compensación. Permite pagos con excedentes de Isapre (integración a medida).",
+            "logistica": "Despacho Express de medicamentos en menos de 2 horas (Last Mile) y envíos refrigerados asegurados."
+        },
+        "faqs": [
+            {
+                "q": "¿Cómo valido las recetas retenidas?",
+                "a": "El sistema bloquea la venta hasta que tu químico farmacéutico valide la receta adjunta desde el panel de administración."
+            },
+            {
+                "q": "¿Se conecta con Farmacias Ahumada/Cruz Verde?",
+                "a": "No, creamos tu propio canal independiente para que no pagues comisiones a marketplaces y seas dueño de tus clientes."
+            },
+            {
+                "q": "¿Qué pasa con los medicamentos refrigerados?",
+                "a": "Configuramos reglas de envío para que ciertos SKUs solo tengan disponible la opción de 'Despacho Express' o 'Retiro en Tienda'."
+            }
+        ],
+        "cta": {
+            "primary": "Digitalizar mi Farmacia",
+            "secondary": "Ver Demo Salud"
+        }
+    }
+}
