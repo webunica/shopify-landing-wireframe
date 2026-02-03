@@ -1,4 +1,4 @@
-import { Zap, Moon, MessageSquare, ArrowRight } from "lucide-react";
+import { Zap, Truck, FileText, Smartphone, Palette, Globe } from "lucide-react";
 import { urlFor } from "@/sanity/lib/image";
 
 interface Feature {
@@ -23,33 +23,31 @@ function FeatureItem({ feature }: { feature: Feature }) {
             {/* Content */}
             <div className="flex-1 space-y-6">
                 {feature.badge && (
-                    <div className="flex items-center gap-2 text-primary-green-dark font-bold text-2xl">
-                        <Zap className="text-primary-green" fill="currentColor" /> <span>{feature.badge}</span>
+                    <div className="flex items-center gap-2 text-primary-green font-bold text-sm tracking-widest uppercase">
+                        <span className="w-2 h-2 rounded-full bg-primary-green animate-pulse" /> <span>{feature.badge}</span>
                     </div>
                 )}
-                <h2 className="text-4xl lg:text-5xl font-heading font-bold text-bg-dark leading-tight">
+                <h2 className="text-3xl lg:text-4xl font-heading font-bold text-bg-dark leading-tight">
                     {feature.title}
                 </h2>
-                <p className="text-lg text-gray-600 leading-relaxed max-w-md">
+                <p className="text-lg text-gray-600 leading-relaxed">
                     {feature.description}
                 </p>
-                <button className="flex items-center gap-2 text-teal-700 font-bold hover:gap-3 transition-all group">
-                    {feature.ctaText || "Learn more"} <ArrowRight className="w-4 h-4" />
-                </button>
             </div>
 
             {/* Visual */}
             <div className="flex-1 w-full relative group">
-                <div className="bg-gray-50 rounded-[2rem] aspect-square lg:aspect-[4/3] flex items-center justify-center p-8 overflow-hidden relative shadow-inner">
+                <div className="bg-gray-50 rounded-3xl aspect-square lg:aspect-[4/3] flex items-center justify-center p-8 overflow-hidden relative shadow-sm border border-black/5">
                     {/* Decor */}
-                    <div className={`absolute w-3/4 h-3/4 ${feature.reversed ? 'bg-purple-100' : 'bg-primary-green/10'} rounded-full blur-3xl`} />
+                    <div className={`absolute w-1/2 h-1/2 ${feature.reversed ? 'bg-teal-500/10' : 'bg-primary-green/10'} rounded-full blur-3xl`} />
 
-                    {/* Image or Placeholder */}
+                    {/* Image or Icon Placeholder */}
                     {imageUrl ? (
-                        <img src={imageUrl} alt={feature.title} className="relative z-10 w-full rounded-xl shadow-lg transform group-hover:-translate-y-2 transition duration-500" />
+                        <img src={imageUrl} alt={feature.title} className="relative z-10 w-full rounded-xl shadow-lg transform group-hover:scale-[1.02] transition duration-500" />
                     ) : (
-                        <div className="bg-white p-6 rounded-2xl shadow-xl w-3/4 z-10 transform group-hover:-translate-y-2 transition duration-500 border border-gray-100 min-h-[200px] flex items-center justify-center">
-                            <span className="text-gray-300 font-bold">No Image</span>
+                        <div className="bg-white/80 p-8 rounded-2xl shadow-sm text-center">
+                            {/* Fallback Icon based on title logic could go here, but for now generic */}
+                            <span className="text-4xl">⚡</span>
                         </div>
                     )}
                 </div>
@@ -59,35 +57,46 @@ function FeatureItem({ feature }: { feature: Feature }) {
 }
 
 export function Features({ data }: FeaturesProps) {
-    // If no data, show nothing (or could show skeletons)
-    if (!data || data.length === 0) return null;
+    // DEFAULT HARDCODED CONTENT (Why Choose Us)
+    // This will be used if CMS returns empty array, effectively overriding the previous placeholders if CMS is empty.
+    const defaultFeatures: Feature[] = [
+        {
+            _id: "f1",
+            title: "Vende en Pesos Chilenos",
+            description: "Pasarelas locales listas (Webpay Plus, Fintoc, MercadoPago) para que el dinero llegue directo a tu cuenta bancaria en Chile sin complicaciones.",
+            badge: "Pasarelas de Pago",
+            reversed: false,
+            image: null // Components handles null image cleanly
+        },
+        {
+            _id: "f2",
+            title: "Envíos Automáticos",
+            description: "Conecta tu tienda con Starken, Chilexpress o BlueExpress. Olvida las planillas Excel y genera etiquetas de envío automáticas.",
+            badge: "Logística Inteligente",
+            reversed: true,
+            image: null
+        },
+        {
+            _id: "f3",
+            title: "Diseño UX/UI que Convierte",
+            description: "No usamos plantillas básicas genéricas. Adaptamos la experiencia visual para generar confianza y reflejar la identidad de tu marca.",
+            badge: "Diseño Premium",
+            reversed: false,
+            image: null
+        }
+    ];
+
+    const featuresToRender = (data && data.length > 0) ? data : defaultFeatures;
 
     return (
-        <section className="container-custom">
-            {data.map((feature, index) => (
-                <div key={feature._id}>
-                    <FeatureItem feature={feature} />
+        <section className="container-custom py-12" id="why-us">
+            <div className="text-center mb-12">
+                <h2 className="text-3xl lg:text-5xl font-heading font-bold mb-4">¿Por qué elegirnos?</h2>
+                <p className="text-gray-500 max-w-2xl mx-auto">Entendemos el mercado chileno. No te entregamos solo una web, te entregamos un canal de ventas operativo.</p>
+            </div>
 
-                    {/* Insert Support Banner after the first item as in the original design */}
-                    {index === 0 && (
-                        <div className="bg-soft-green rounded-[3rem] p-12 lg:p-20 text-center my-12">
-                            <div className="inline-block p-4 bg-white rounded-full shadow-md mb-6 animate-bounce">
-                                <MessageSquare className="w-8 h-8 text-teal-700" />
-                            </div>
-                            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-bg-dark mb-6">
-                                Get <span className="text-teal-700 italic">award-winning</span><br />customer support
-                            </h2>
-                            <p className="max-w-xl mx-auto text-gray-600 mb-10">
-                                We're here for you 24/7. Our global support team is rated 5 stars.
-                            </p>
-                            <div className="flex justify-center -space-x-4">
-                                {[1, 2, 3, 4].map(i => (
-                                    <div key={i} className="w-12 h-12 rounded-full border-4 border-white bg-gray-300 overflow-hidden" />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                </div>
+            {featuresToRender.map((feature, index) => (
+                <FeatureItem key={feature._id} feature={feature} />
             ))}
         </section>
     );
