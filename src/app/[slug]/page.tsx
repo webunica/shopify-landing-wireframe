@@ -1,5 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
+import { CreditCard, Truck } from "lucide-react";
 import Hero from "@/components/Hero";
 import { Features } from "@/components/Features";
 import Navbar from "@/components/Navbar";
@@ -113,17 +114,33 @@ export default async function LandingPage(props: Props) {
 
             {/* 4. Integraciones (Custom Block) */}
             {content.integraciones && (
-                <section className="py-24 bg-soft-green">
-                    <div className="container-custom">
-                        <h2 className="text-3xl font-heading font-bold text-bg-dark mb-12 text-center">Integraciones Locales</h2>
+                <section className="py-24 bg-bg-dark relative overflow-hidden">
+                    {/* Background Glows */}
+                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-green/10 rounded-full blur-[100px] pointer-events-none" />
+                    <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
+
+                    <div className="container-custom relative z-10">
+                        <h2 className="text-3xl lg:text-5xl font-heading font-bold text-white mb-16 text-center">
+                            Integraciones Locales <span className="text-primary-green">.</span>
+                        </h2>
+
                         <div className="grid md:grid-cols-2 gap-8">
-                            <div className="bg-white p-8 rounded-2xl shadow-sm">
-                                <h3 className="text-xl font-bold mb-4 text-teal-800">Pasarelas de Pago</h3>
-                                <p className="text-gray-600 leading-relaxed">{content.integraciones.pagos}</p>
+                            {/* Pagos Card */}
+                            <div className="group bg-white/5 border border-white/10 p-10 rounded-3xl hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary-green/20">
+                                <div className="w-16 h-16 rounded-2xl bg-primary-green/20 flex items-center justify-center text-primary-green mb-8 group-hover:scale-110 transition-transform duration-500">
+                                    <CreditCard size={32} />
+                                </div>
+                                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-primary-green transition-colors">Pasarelas de Pago</h3>
+                                <p className="text-gray-400 leading-relaxed text-lg">{content.integraciones.pagos}</p>
                             </div>
-                            <div className="bg-white p-8 rounded-2xl shadow-sm">
-                                <h3 className="text-xl font-bold mb-4 text-teal-800">Logística y Envíos</h3>
-                                <p className="text-gray-600 leading-relaxed">{content.integraciones.logistica}</p>
+
+                            {/* Logistica Card */}
+                            <div className="group bg-white/5 border border-white/10 p-10 rounded-3xl hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20">
+                                <div className="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-400 mb-8 group-hover:scale-110 transition-transform duration-500">
+                                    <Truck size={32} />
+                                </div>
+                                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Logística y Envíos</h3>
+                                <p className="text-gray-400 leading-relaxed text-lg">{content.integraciones.logistica}</p>
                             </div>
                         </div>
                     </div>
