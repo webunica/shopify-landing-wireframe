@@ -1,70 +1,114 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { useRef } from "react";
 
-const categories = [
-    { name: "Moda Urbana", tag: "Fashion", gradient: "from-pink-500 to-rose-500" },
-    { name: "Tecnología Premium", tag: "Electronics", gradient: "from-blue-500 to-cyan-500" },
-    { name: "Estilo de Vida", tag: "Lifestyle", gradient: "from-amber-500 to-orange-500" },
-    { name: "Decoración Minimalista", tag: "Home Decor", gradient: "from-emerald-500 to-green-500" },
-    { name: "Cuidado Personal", tag: "Beauty", gradient: "from-purple-500 to-violet-500" },
-    { name: "Accesorios & Joyas", tag: "Accessories", gradient: "from-indigo-500 to-blue-500" },
-    { name: "Deportes Extremos", tag: "Sports", gradient: "from-red-500 to-orange-500" },
-    { name: "Gourmet & Food", tag: "Food", gradient: "from-yellow-500 to-amber-500" },
+const projects = [
+    { name: "Kine Lawen", category: "Salud", url: "https://www.kinelawen.com/", gradient: "from-cyan-500 to-blue-500" },
+    { name: "TerraAndes Plus", category: "Export", url: "https://terraandesplus.com/", gradient: "from-amber-700 to-orange-500" },
+    { name: "AntarctiCare", category: "Cosmética", url: "https://antarcticare.cl/", gradient: "from-blue-100 to-indigo-300" },
+    { name: "SpinMedical", category: "Equipamiento", url: "https://spinmedical.cl/", gradient: "from-sky-500 to-indigo-500" },
+    { name: "Divan Tienda", category: "Mobiliario", url: "https://divantienda.cl/", gradient: "from-stone-500 to-stone-700" },
+    { name: "Librería Bazarte", category: "Arte", url: "https://libreriabazarte.cl/", gradient: "from-rose-500 to-pink-600" },
+    { name: "Chiletronics", category: "Tech", url: "https://chiletronics.cl/", gradient: "from-violet-600 to-indigo-600" },
+    { name: "Altavista Chile", category: "Táctico", url: "https://altavistachile.cl/", gradient: "from-green-800 to-emerald-600" },
+    { name: "PHY Waters", category: "Suplementos", url: "https://phywaters.com/", gradient: "from-cyan-400 to-teal-400" },
+    { name: "Recovery Zone", category: "Deporte", url: "https://recoveryzone.cl/", gradient: "from-red-600 to-orange-600" },
+    { name: "Tecno-Mobile", category: "Retail", url: "https://tecno-mobile.cl/", gradient: "from-blue-600 to-cyan-500" },
+    { name: "Only Jeep", category: "Accesorios", url: "https://www.onlyjeep.cl/", gradient: "from-yellow-600 to-amber-600" },
+    { name: "EvertSport", category: "Indumentaria", url: "https://eversport.cl/", gradient: "from-lime-500 to-green-600" },
+    { name: "Anteros", category: "Ferretería", url: "https://tienda.anteros.cl/", gradient: "from-orange-600 to-red-600" },
 ];
 
-export function Portfolio() {
+function ProjectCard({ project }: { project: typeof projects[0] }) {
+    // Mouse interaction for tilt effect
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseX = useSpring(x, { stiffness: 500, damping: 100 });
+    const mouseY = useSpring(y, { stiffness: 500, damping: 100 });
+
+    function onMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+        const { left, top, width, height } = currentTarget.getBoundingClientRect();
+        x.set((clientX - left) / width - 0.5);
+        y.set((clientY - top) / height - 0.5);
+    }
+
+    const rotateX = useTransform(mouseY, [-0.5, 0.5], [7, -7]);
+    const rotateY = useTransform(mouseX, [-0.5, 0.5], [-7, 7]);
+
     return (
-        <section className="py-32 bg-bg-dark relative" id="portfolio">
-            {/* Decorative gradient blur top */}
-            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-bg-card to-bg-dark pointer-events-none" />
+        <motion.a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative min-w-[300px] h-[420px] rounded-2xl bg-bg-card border border-white/5 overflow-hidden group cursor-none"
+            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+            onMouseMove={onMouseMove}
+            onMouseLeave={() => { x.set(0); y.set(0); }}
+            whileHover={{ scale: 1.02 }}
+        >
+            {/* Fake UI Header */}
+            <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20 opacity-60 group-hover:opacity-100 transition-opacity">
+                <div className="flex gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-white/40" />
+                    <div className="w-2 h-2 rounded-full bg-white/40" />
+                </div>
+                <ExternalLink className="w-4 h-4 text-white/60" />
+            </div>
 
-            <div className="container-custom relative z-10">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 border-b border-white/5 pb-12">
-                    <div>
-                        <span className="text-primary-green font-bold tracking-wider text-sm uppercase mb-3 block">Portafolio</span>
-                        <h2 className="text-4xl lg:text-6xl font-heading font-bold text-white leading-tight">
-                            Diseños que <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-green to-teal-400">Venden</span>
-                        </h2>
-                    </div>
-                    <button className="flex items-center gap-2 text-white bg-white/5 hover:bg-white/10 px-6 py-3 rounded-full font-bold transition-all group border border-white/10">
-                        Ver todos los proyectos <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
+            {/* Gradient Background */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20 group-hover:opacity-50 transition-all duration-700`} />
+
+            {/* Content */}
+            <div className="absolute inset-0 flex flex-col justify-end p-8 z-20 bg-gradient-to-t from-black via-transparent to-transparent">
+                <p className="text-xs font-bold text-primary-green uppercase tracking-widest mb-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    {project.category}
+                </p>
+                <h3 className="text-2xl font-bold text-white group-hover:text-primary-green transition-colors leading-tight">
+                    {project.name}
+                </h3>
+            </div>
+
+            {/* Custom Cursor Text (Visual only, actual cursor hidden via class) */}
+            <div className="pointer-events-none absolute inset-0 z-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-white text-xs font-bold border border-white/20">
+                    VISITAR
+                </div>
+            </div>
+        </motion.a>
+    );
+}
+
+export function Portfolio() {
+    const targetRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({ target: targetRef });
+
+    const x = useTransform(scrollYProgress, [0, 1], ["1%", "-65%"]);
+
+    return (
+        <section ref={targetRef} className="py-24 bg-bg-dark relative h-[400vh]" id="portfolio">
+            <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+                <div className="container-custom mb-12">
+                    <span className="text-primary-green font-bold tracking-wider text-sm uppercase mb-3 block">Portafolio</span>
+                    <h2 className="text-4xl lg:text-6xl font-heading font-bold text-white leading-tight">
+                        Nuestro trabajo <span className="text-gray-600">habla por sí mismo.</span>
+                    </h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {categories.map((cat, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.05 }}
-                            className="group relative aspect-[3/4] overflow-hidden rounded-2xl bg-bg-card border border-white/5 hover:border-white/20 transition-colors cursor-pointer"
-                        >
-                            {/* Fake UI Header inside Card */}
-                            <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20">
-                                <div className="flex gap-1">
-                                    <div className="w-2 h-2 rounded-full bg-white/20" />
-                                    <div className="w-2 h-2 rounded-full bg-white/20" />
-                                </div>
-                                <div className="px-2 py-1 rounded bg-black/50 backdrop-blur text-[10px] text-gray-400 font-mono border border-white/5">
-                                    store.com
-                                </div>
-                            </div>
-
-                            {/* Abstract Gradient Background representing the "Site" */}
-                            <div className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
-
-                            {/* Content at bottom */}
-                            <div className="absolute bottom-0 left-0 w-full p-6 z-20 bg-gradient-to-t from-black via-black/80 to-transparent">
-                                <p className="text-xs font-bold text-primary-green uppercase mb-1 tracking-wider">{cat.tag}</p>
-                                <h3 className="text-xl font-bold text-white group-hover:text-primary-green transition-colors">{cat.name}</h3>
-                            </div>
-                        </motion.div>
+                <motion.div style={{ x }} className="flex gap-8 pl-[10vw]">
+                    {projects.map((project, i) => (
+                        <ProjectCard key={i} project={project} />
                     ))}
-                </div>
+                    {/* End Card */}
+                    <div className="min-w-[300px] h-[420px] flex flex-col items-center justify-center text-white/50 border border-dashed border-white/10 rounded-2xl">
+                        <p className="text-sm font-bold uppercase tracking-widest mb-4">Tu Proyecto Aquí</p>
+                        <a href="#contact" className="bg-primary-green text-bg-dark px-6 py-3 rounded-full font-bold hover:scale-105 transition-transform">
+                            Cotizar Ahora
+                        </a>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

@@ -13,37 +13,29 @@ export function LogoGrid() {
     ];
 
     return (
-        <div className="py-10 border-y border-white/5 bg-black/20">
-            <div className="container-custom overflow-hidden">
-                <p className="text-center text-xs font-bold text-gray-500 uppercase tracking-widest mb-8">
+        <div className="py-12 border-y border-white/5 bg-black/40 backdrop-blur-sm relative z-10">
+            <div className="container-custom overflow-hidden relative">
+                <p className="text-center text-xs font-bold text-gray-500 uppercase tracking-widest mb-10">
                     Tecnologías & Partners que utilizamos
                 </p>
 
+                {/* Gradient Masks for smooth fade effect */}
+                <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-black/80 to-transparent z-10 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-black/80 to-transparent z-10 pointer-events-none" />
+
                 <div className="relative flex overflow-x-hidden group">
                     <div className="animate-marquee whitespace-nowrap flex gap-16 items-center">
-                        {[...brands, ...brands].map((brand, i) => (
-                            <span key={`${brand}-${i}`} className="text-xl md:text-2xl font-heading font-bold text-white/40 hover:text-white hover:opacity-100 transition-all cursor-default">
+                        {/* Triple duplication to ensure smooth infinite loop on wide screens */}
+                        {[...brands, ...brands, ...brands].map((brand, i) => (
+                            <span
+                                key={`${brand}-${i}`}
+                                className="text-xl md:text-2xl font-heading font-bold text-gray-500 hover:text-white transition-colors cursor-default select-none"
+                            >
                                 {brand}
                             </span>
                         ))}
                     </div>
-
-                    <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex gap-16 items-center ml-16">
-                        {/* Duplicate for infinite loop effect if needed, though simple flex gap often suffices for static lists. 
-                 For now keeping it simple grid style for better mobile view if marquee is too complex to implement perfectly without custom CSS animation keyframes being checked.
-             */}
-                    </div>
                 </div>
-
-                {/* Simple Grid Fallback for robustness */}
-                <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 mt-4 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                    {brands.map((brand) => (
-                        <span key={brand} className="text-lg font-bold text-white hover:text-primary-green transition-colors cursor-default">
-                            {brand}
-                        </span>
-                    ))}
-                </div>
-
             </div>
         </div>
     );
