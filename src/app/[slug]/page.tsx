@@ -103,7 +103,7 @@ export default async function LandingPage(props: Props) {
             {content.solucion_nicho && (
                 <div className="bg-bg-card">
                     <div className="container-custom pt-24 text-center">
-                        <h2 className="text-3xl lg:text-5xl font-heading font-bold text-white mb-6">
+                        <h2 className="text-3xl lg:text-5xl font-heading font-bold text-white mb-6 pt-12">
                             {content.solucion_nicho.titulo}
                         </h2>
                     </div>
