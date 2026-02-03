@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FAQ } from "@/components/FAQ";
 import { LogoGrid } from "@/components/FeatureDrop";
+import { Portfolio } from "@/components/Portfolio";
 import { notFound } from "next/navigation";
 
 import exampleData from "../../../example_ferreteria.json";
@@ -111,6 +112,9 @@ export default async function LandingPage(props: Props) {
                     <Features data={featuresData} />
                 </div>
             )}
+
+            {/* Global Portfolio Section */}
+            <Portfolio />
 
             {/* 4. Integraciones (Custom Block) */}
             {content.integraciones && (

@@ -90,7 +90,7 @@ export function Portfolio() {
     return (
         <section ref={targetRef} className="py-24 bg-bg-dark relative h-[400vh]" id="portfolio">
             <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-                <div className="container-custom mb-12">
+                <div className="container-custom mb-20">
                     <span className="text-primary-green font-bold tracking-wider text-sm uppercase mb-3 block">Portafolio</span>
                     <h2 className="text-4xl lg:text-6xl font-heading font-bold text-white leading-tight">
                         Nuestro trabajo <span className="text-gray-600">habla por sí mismo.</span>
