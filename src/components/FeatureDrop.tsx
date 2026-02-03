@@ -13,15 +13,15 @@ export function LogoGrid() {
     ];
 
     return (
-        <div className="py-12 border-y border-white/5 bg-black/40 backdrop-blur-sm relative z-10">
+        <div className="py-16 border-y border-white/5 bg-bg-dark relative z-10">
             <div className="container-custom overflow-hidden relative">
-                <p className="text-center text-xs font-bold text-gray-500 uppercase tracking-widest mb-10">
+                <p className="text-center text-xs font-bold text-gray-400 uppercase tracking-widest mb-10">
                     Tecnologías & Partners que utilizamos
                 </p>
 
                 {/* Gradient Masks for smooth fade effect */}
-                <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-black/80 to-transparent z-10 pointer-events-none" />
-                <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-black/80 to-transparent z-10 pointer-events-none" />
+                <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-bg-dark to-transparent z-10 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-bg-dark to-transparent z-10 pointer-events-none" />
 
                 <div className="relative flex overflow-x-hidden group">
                     <div className="animate-marquee whitespace-nowrap flex gap-16 items-center">
