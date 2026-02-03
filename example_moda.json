@@ -1,0 +1,52 @@
+{
+    "slug": "shopify-moda-urbana-chile",
+    "meta": {
+        "title": "Diseño Tiendas Online Moda Chile | Shopify Experts & UX",
+        "description": "Lanza tu marca de ropa con una tienda Shopify de alto impacto visual. Integración con Instagram Shop, gestión de tallas y logística de cambios simplificada."
+    },
+    "content": {
+        "hero": {
+            "h1": "Tu Marca de Moda merece más que un catálogo aburrido",
+            "p": "Convierte seguidores de Instagram en clientes fieles. Creamos experiencias de compra visuales, optimizadas para móvil y listas para vender tus colecciones en minutos."
+        },
+        "solucion_nicho": {
+            "titulo": "E-commerce para Marcas de Ropa y Accesorios",
+            "puntos_clave": [
+                {
+                    "label": "Lookbook Interactivo",
+                    "desc": "Permite que tus clientes compren el 'look completo' con un solo clic. Fotos de alta resolución y videos de pasarela en la ficha de producto."
+                },
+                {
+                    "label": "Guía de Tallas Inteligente",
+                    "desc": "Reducimos tus devoluciones implementando pop-ups de tallas y recomendaciones basadas en medidas corporales chilenas."
+                },
+                {
+                    "label": "Instagram & TikTok Shop",
+                    "desc": "Sincronización automática de tu catálogo con Meta Commerce. Etiqueta productos en tus Reels y Stories para venta directa."
+                }
+            ]
+        },
+        "integraciones": {
+            "pagos": "Checkout transparente con MercadoPago y Webpay. Ofrece 3 a 6 cuotas sin interés para aumentar el ticket promedio de tus prendas.",
+            "logistica": "Logística inversa automatizada para cambios y devoluciones fáciles con Blue Express. Impresión de etiquetas masiva para días de Cyber."
+        },
+        "faqs": [
+            {
+                "q": "¿Puedo gestionar preventas de colecciones?",
+                "a": "Sí, configuramos sistemas de 'Pre-Orden' para que financies tu producción antes de tener el stock físico disponible."
+            },
+            {
+                "q": "¿Cómo manejo el stock en tienda física y web?",
+                "a": "Usamos Shopify POS (Punto de Venta) para unificar tu inventario. Si vendes una polera en el local, se descuenta automáticamente de la web."
+            },
+            {
+                "q": "¿Incluye diseño de emails para recuperación de carritos?",
+                "a": "Totalmente. Configuramos Klaviyo con flujos automáticos de 'Carrito Abandonado' con estética de revista de moda."
+            }
+        ],
+        "cta": {
+            "primary": "Cotizar Tienda de Moda",
+            "secondary": "Ver Demo Fashion"
+        }
+    }
+}

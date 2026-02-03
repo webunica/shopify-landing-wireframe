@@ -9,6 +9,7 @@ import { LogoGrid } from "@/components/FeatureDrop";
 import { notFound } from "next/navigation";
 
 import exampleData from "../../../example_ferreteria.json";
+import exampleModa from "../../../example_moda.json";
 
 // Force dynamic rendering to ensure new CMS content is fetched
 export const dynamic = 'force-dynamic';
@@ -36,6 +37,9 @@ async function getLandingData(slug: string) {
     // Fallback for local testing (demo purpose)
     if (slug === exampleData.slug) {
         return exampleData;
+    }
+    if (slug === exampleModa.slug) {
+        return exampleModa;
     }
 
     return null;
