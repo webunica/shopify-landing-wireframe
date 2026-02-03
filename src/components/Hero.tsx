@@ -1,22 +1,54 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { urlFor } from "@/sanity/lib/image";
 import { CheckCircle, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
 
 interface HeroProps {
     data: {
         title?: string;
         subtitle?: string;
-        image?: any;
+        images?: any[]; // Updated to Array
+        image?: any; // Fallback for legacy single image
     } | null;
 }
 
 export default function Hero({ data }: HeroProps) {
-    // Fallback con el contenido Real de Shopify Partners Chile
     const title = data?.title || "Desarrollo y Diseño de Tiendas Shopify en Chile";
     const subtitle = data?.subtitle || "Llevamos tu negocio al siguiente nivel con un E-commerce diseñado para vender. Resultados medibles y tiendas optimizadas.";
-    const imageUrl = data?.image ? urlFor(data.image).url() : "/shopify-dashboard.png";
+
+    // Logic to build the image array:
+    // 1. CMS Array
+    // 2. CMS Single Image (wrapped in array)
+    // 3. Hardcoded defaults
+    let slides: string[] = [];
+
+    if (data?.images && data.images.length > 0) {
+        slides = data.images.map((img: any) => urlFor(img).url());
+    } else if (data?.image) {
+        slides = [urlFor(data.image).url()];
+    } else {
+        // Default placeholders if CMS is empty
+        slides = [
+            "/shopify-dashboard.png", // Ensure this exists or use a remote URL
+            "https://cdn.shopify.com/s/files/1/0070/7032/files/shopify-plus_1.jpg?v=1613768393", // Example generic shopify wallpaper
+            "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=800"
+        ];
+    }
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    // Auto-play Effect
+    useEffect(() => {
+        if (slides.length <= 1) return; // Don't cycle if only 1 image
+
+        const timer = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % slides.length);
+        }, 4000); // Change every 4 seconds
+
+        return () => clearInterval(timer);
+    }, [slides.length]);
 
     return (
         <section className="bg-bg-dark text-white pt-24 pb-32 overflow-hidden relative">
@@ -27,6 +59,7 @@ export default function Hero({ data }: HeroProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
+                    className="relative z-20"
                 >
                     <span className="inline-block py-1 px-3 rounded-full bg-primary-green/10 text-primary-green font-bold text-xs tracking-widest uppercase mb-6 border border-primary-green/20">
                         Shopify Partners Oficial
@@ -69,27 +102,48 @@ export default function Hero({ data }: HeroProps) {
                     </div>
                 </motion.div>
 
-                {/* Visual Content */}
+                {/* Carousel Visual Content */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative"
+                    className="relative lg:h-[600px] flex items-center"
                 >
                     {/* Abstract blobs background */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary-green/20 blur-[100px] rounded-full -z-10" />
 
-                    <div className="relative z-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-bg-card">
-                        <div className="absolute top-0 left-0 w-full h-8 bg-black/50 flex items-center px-4 gap-2 border-b border-white/5">
+                    <div className="relative z-10 w-full aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-bg-card">
+                        {/* Browser Header */}
+                        <div className="absolute top-0 left-0 w-full h-8 bg-black/80 backdrop-blur z-20 flex items-center px-4 gap-2 border-b border-white/5">
                             <div className="w-3 h-3 rounded-full bg-red-500" />
                             <div className="w-3 h-3 rounded-full bg-yellow-500" />
                             <div className="w-3 h-3 rounded-full bg-green-500" />
                         </div>
-                        <img
-                            src={imageUrl}
-                            alt="Shopify Dashboard"
-                            className="w-full h-auto mt-8 opacity-90 hover:scale-105 transition-transform duration-700 block bg-bg-dark"
-                        />
+
+                        {/* Carousel Images */}
+                        <AnimatePresence mode="wait">
+                            <motion.img
+                                key={currentIndex}
+                                src={slides[currentIndex]}
+                                alt="Shopify Store Preview"
+                                initial={{ opacity: 0, scale: 1.05 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.8 }}
+                                className="w-full h-full object-cover bg-bg-dark absolute inset-0"
+                            />
+                        </AnimatePresence>
+
+                        {/* Carousel Indicators */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+                            {slides.map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setCurrentIndex(idx)}
+                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-primary-green w-6' : 'bg-white/30 hover:bg-white'}`}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </motion.div>
             </div>

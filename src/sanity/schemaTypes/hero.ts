@@ -16,19 +16,26 @@ export const heroType = defineType({
             type: 'text',
         }),
         defineField({
-            name: 'image',
-            title: 'Hero Image',
-            type: 'image',
+            name: 'images',
+            title: 'Carousel Images',
+            description: 'Upload multiple images for the auto-playing carousel',
+            type: 'array',
+            of: [{
+                type: 'image',
+                options: { hotspot: true },
+                fields: [
+                    defineField({
+                        name: 'alt',
+                        type: 'string',
+                        title: 'Alternative text',
+                    }),
+                ]
+            }],
             options: {
-                hotspot: true,
-            },
-            fields: [
-                defineField({
-                    name: 'alt',
-                    type: 'string',
-                    title: 'Alternative text',
-                }),
-            ]
+                layout: 'grid',
+            }
         }),
+        // Keeping legacy field just in case, or we can deprecate it. 
+        // For this update, I'll focus on the array.
     ],
 })
