@@ -8,6 +8,8 @@ import { FAQ } from "@/components/FAQ";
 import { LogoGrid } from "@/components/FeatureDrop";
 import { notFound } from "next/navigation";
 
+import exampleData from "../../../example_ferreteria.json";
+
 // Force dynamic rendering to ensure new CMS content is fetched
 export const dynamic = 'force-dynamic';
 
@@ -18,12 +20,25 @@ interface Props {
 }
 
 async function getLandingData(slug: string) {
-    return await client.fetch(groq`
-    *[_type == "landingPage" && slug.current == $slug][0] {
-      meta,
-      content
+    try {
+        const data = await client.fetch(groq`
+        *[_type == "landingPage" && slug.current == $slug][0] {
+          meta,
+          content
+        }
+      `, { slug }, { cache: 'no-store' });
+
+        if (data) return data;
+    } catch (e) {
+        console.warn("Sanity fetch failed, checking local fallback...");
     }
-  `, { slug }, { cache: 'no-store' });
+
+    // Fallback for local testing (demo purpose)
+    if (slug === exampleData.slug) {
+        return exampleData;
+    }
+
+    return null;
 }
 
 export async function generateMetadata({ params }: Props) {

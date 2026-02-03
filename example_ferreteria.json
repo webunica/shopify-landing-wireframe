@@ -1,0 +1,52 @@
+{
+  "slug": "shopify-ferreteria-industrial-chile",
+  "meta": {
+    "title": "Diseño Web Ferreterías Chile | Shopify B2B y Sincronización",
+    "description": "Expertos en digitalizar ferreterías y proveedoras industriales. Sincronizamos tu ERP con Shopify, pagos Webpay y envíos Starken. Cotiza tu tienda técnica hoy."
+  },
+  "content": {
+    "hero": {
+      "h1": "Tu Ferretería Industrial, vendiendo 24/7 con Shopify",
+      "p": "Deja de perder ventas por 'falta de stock' o precios desactualizados. Creamos tiendas online robustas que aguantan tu catálogo de 50.000 SKUs y sincronizan con tu bodega en tiempo real."
+    },
+    "solucion_nicho": {
+      "titulo": "Especialistas en Venta Técnica y Construcción",
+      "puntos_clave": [
+        { 
+          "label": "Catálogo Masivo", 
+          "desc": "Buscadores inteligentes que encuentran 'tornillo 3/8' en milisegundos. Filtros por medida, material y marca." 
+        },
+        { 
+          "label": "Precios B2B/B2C", 
+          "desc": "Muestra precios diferentes para tus clientes mayoristas (con login) y público general. Genera cotizaciones formales en PDF automáticas." 
+        },
+        { 
+          "label": "Fichas Técnicas", 
+          "desc": "Pestañas personalizadas para manuales PDF, certificaciones ISO y videos de uso en cada ficha de producto." 
+        }
+      ]
+    },
+    "integraciones": {
+      "pagos": "Recibe pagos con Webpay Plus (Crédito y Débito) y transferencias bancarias validadas automáticamente para montos altos corporativos.",
+      "logistica": "Integración con Starken y Blue Express para cálculo de flete real según el peso volumétrico de herramientas y maquinaria pesada."
+    },
+    "faqs": [
+      { 
+        "q": "¿Puedo conectar mi ERP (Softland/Defontana/SAP)?", 
+        "a": "Absolutamente. Somos expertos en integración vía API. Tu inventario y precios se actualizan solos cada 15 minutos." 
+      },
+      { 
+        "q": "¿Qué pasa con los clientes con cuenta corriente?", 
+        "a": "Implementamos un módulo de 'Compra a Crédito' donde tus clientes empresas pueden comprar usando su línea de crédito autorizada y pagar a 30 días." 
+      },
+      { 
+        "q": "¿Soporta venta de productos a medida?", 
+        "a": "Sí, configuramos calculadoras de precios para venta de cables, mallas o perfiles por metro lineal o m2." 
+      }
+    ],
+    "cta": {
+      "primary": "Cotizar E-commerce Ferretero",
+      "secondary": "Consultar por Integración ERP"
+    }
+  }
+}
