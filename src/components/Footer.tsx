@@ -2,7 +2,7 @@ export default function Footer() {
     return (
         <footer className="bg-black text-gray-400 border-t border-white/10">
             {/* Links Grid */}
-            <div className="container-custom py-32 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 text-sm">
+            <div className="container-custom pt-48 pb-32 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 text-sm">
                 <div className="col-span-2 lg:col-span-1">
                     <span className="text-white font-bold text-2xl font-heading">WEB<span className="text-primary-green">UNICA</span></span>
                     <p className="mt-6 text-gray-500 leading-relaxed">
