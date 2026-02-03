@@ -15,7 +15,7 @@ export function LogoGrid() {
     return (
         <div className="py-24 border-y border-white/5 bg-bg-dark relative z-10">
             <div className="container-custom overflow-hidden relative">
-                <p className="text-center text-xs font-bold text-gray-500 uppercase tracking-widest mb-16 opacity-60">
+                <p className="text-center text-xs font-bold text-gray-400 uppercase tracking-widest mb-16">
                     Tecnologías & Partners que utilizamos
                 </p>
 
