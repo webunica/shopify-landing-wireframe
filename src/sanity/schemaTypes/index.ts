@@ -4,7 +4,8 @@ import { featureType } from './feature'
 import { testimonialType } from './testimonial'
 import { logoGridType } from './logoGrid'
 import { postType } from './post'
+import { landingPageType } from './landingPage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-    types: [heroType, featureType, testimonialType, logoGridType, postType],
+    types: [heroType, featureType, testimonialType, logoGridType, postType, landingPageType],
 }
